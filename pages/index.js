@@ -1,75 +1,40 @@
-export default function Home() {
+import Head from "next/head";
+import { useState } from "react";
+import { hours } from "../data";
+import ReportTable from "../components/ReportTable";
+import CreateForm from "../components/CreateForm";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+export default function CookieStandAdmin() {
+
+  const [stores, setStores] = useState([])
+
+  function handleTable(location, min_cust, max_cust, avg_cookie) {
+    
+    const store = {
+      location,
+      min_cust,
+      max_cust,
+      avg_cookie,
+      hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36],
+      id: stores.length
+    }
+
+    setStores([...stores, store])
+  }
+
   return (
-    <>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </>
-  )
-}
+    <div>
+      <Head><title>Cookie Stand Admin</title></Head>
+      <Header title="Cookie Stand Admin"/>
 
-function Header() {
-  return (
-    <header>
-      <h1 className="items-center p-4 text-4xl font-medium bg-green-500">Cookie Stand Admin</h1>
-    </header>
-  )
-}
+      <main>
+        <CreateForm table={handleTable}/>
+        <ReportTable hours={hours} stores={stores}/>
+      </main>
 
-function Main() {
-  return (
-    <main>
-      <Form/>
-      <Table/>
-    </main>
-  )
-}
-
-function Footer(){
-  return (
-    <footer className="p-4 mt-1 bg-green-500">
-      <p className="font-medium">&copy;2022</p>
-    </footer>
-  )
-}
-
-function Form() {
-  return (
-    <form className="text-center mx-80 my-10 pb-2 bg-green-500 rounded-md">
-      <h1 className="pt-5 pb-2 text-3xl font-medium">Create Cookie Stand</h1>
-      
-      <div className="flex px">
-        <p className="p-5 pr-2 font-medium">Location</p>
-        <input type="text" className="w-full my-auto mr-10 h-1/2"/>
-      </div>
-
-      <div className="m-3">
-        <div className="text-center inline-block w-1/4 mr-5">
-          <p className="block font-medium">Minimum Customers Per Hour</p>
-          <input type="text" className="block w-full"/>
-        </div>
-
-        <div className="text-center inline-block w-1/4 mr-5">
-          <p className="block font-medium">Maximum Customers Per Hour</p>
-          <input type="text" className="block w-full"/>
-        </div>
-
-        <div className="text-center inline-block w-1/4 mr-5">
-          <p className="block font-medium">Average Cookies Per Sale</p>
-          <input type="text" className="block w-full"/>
-        </div>
-
-        <button className="px-16 py-5 text-lg font-medium bg-green-700">Create</button>
-      </div>
-    </form>
-  )
-}
-
-function Table() {
-  return (
-    <div className="text-center">
-      <h3 className="text-base mb-10">Report Table Coming Soon...</h3>
-      <p className="text-lg mb-10">{'{\"location\":\"Barcelona\",\"minCustomers\":2,\"maxCustomers\":4,\"avgCookies\":2.5}'}</p>
+      <Footer stores={stores}/>
     </div>
-  )
+  );
 }
