@@ -7,18 +7,23 @@ export default function ReportTable({ stands, deleteStand }) {
         )
     } else {
         return (
-            <table className="w-8/12 px-3 pb-2 mx-auto my-5 text-sm rounded bg-green-400">
+            <table className="w-8/12 px-3 pb-2 mx-auto my-5 text-sm bg-green-400">
                 <thead>
                     <tr>
-                        <th className="text-center">Location</th>
-                        {hours.map(hour => <th key={hour}>{hour}</th>)}
-                        <th>Totals</th>
+                        <th className="border border-black">Location</th>
+                        {hours.map(hour => <th key={hour} className="border border-black">{hour}</th>)}
+                        <th className="border border-black">Totals</th>
                     </tr>
                 </thead>
                 <tbody>
                     {stands.map(stand => (
                         <CookieStandRow key={stand.id} info={stand} deleteStand={deleteStand} />
                     ))}
+                    <tr>
+                        <td className="text-center border border-black font-bold">Totals</td>
+                        {hours.map(hour => <td key={hour} className="text-center border border-black font-bold">N/A</td>)}
+                        <td className="text-center border border-black font-bold">N/A</td>
+                    </tr>
                 </tbody>
             </table>
         );
@@ -48,11 +53,6 @@ function CookieStandRow({ info, deleteStand }) {
             </td>
             {info.hourly_sales.map((slot, index) => <td key={index} className="text-center border border-black bg-green-200">{slot}</td>)}
             <td className="text-center border border-black font-medium bg-green-200">{info.hourly_sales.reduce((num, sum) => num + sum, 0)}</td>
-        </tr>
-        <tr>
-            <td className="text-center border border-black font-bold">Totals</td>
-            {hours.map(hour => <td key={hour} className="text-center border border-black font-bold">N/A</td>)}
-            <td className="text-center border border-black font-bold">N/A</td>
         </tr>
         </>
     );

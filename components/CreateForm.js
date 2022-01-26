@@ -21,31 +21,31 @@ export default function CreateForm() {
     return ( 
       <form className="text-center mx-80 my-5 px-5 pb-5 bg-green-200 rounded-lg border-2 border-green-400" onSubmit={handleSubmit}>
         
-        <div className='flex justify-evenly p-3'>
-            <div>
-                <label className="p-5 pr-2 font-medium ">Add Location</label>
-                <input placeholder="Cookie Stand Location" name="location" type="text" className="w-full my-auto mr-20 h-1/2"/>
+        <div className='flex items-end'>
+            <div className='block w-2/3 m-2'>
+                <label className="block w-full p-1 pr-2 font-bold text-center">ADD LOCATION</label>
+                <input placeholder="Cookie Stand Location" name="location" type="text" className="block w-10/12 p-1 ml-16 mt-2"/>
             </div>
             
-            <div className="inline-block">
-                <button className="px-20 py-6 ml-10 text-lg font-medium bg-green-600 rounded">Create Stand</button>
+            <div className="flex items-center  w-1/3">
+                <button className="px-20 py-2 ml-10 text-md bg-green-600 rounded">CREATE STAND</button>
             </div>
         </div>
   
         <div className="flex justify-evenly">
             <div className="text-center inline-block w-1/4 mr-5 p-3">
                 <p className="block font-medium">Minimum Customers Per Hour</p>
-                <input placeholder="0" name="min_cust" type="text" className="w-full"/>
+                <input placeholder="0" name="min_cust" type="text" className="w-full p-1"/>
             </div>
 
             <div className="text-center inline-block w-1/4 mr-5 p-3">
                 <p className="block font-medium">Maximum Customers Per Hour</p>
-                <input placeholder="0" name="max_cust" type="text" className="w-full"/>
+                <input placeholder="0" name="max_cust" type="text" className="w-full p-1"/>
             </div>
 
             <div className="text-center inline-block w-1/4 mr-5 p-3">
                 <p className="block font-medium">Average Cookies Per Sale</p>
-                <input placeholder="0" name="avg_cookie" type="text" className="w-full"/>
+                <input placeholder="0" name="avg_cookie" type="text" className="w-full p-1"/>
             </div>
         </div>
       </form>
